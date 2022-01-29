@@ -1,4 +1,4 @@
-ARG pandoc_version="2.10"
+ARG pandoc_version="2.17-alpine"
 
 FROM pandoc/latex:${pandoc_version}
 
@@ -40,26 +40,26 @@ RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texliv
         xurl \
         zref
 
-#RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
-#    && tlmgr install adjustbox \
-#    babel-${lang} \
-#    background \
-#    collectbox \
-#    everypage \
-#    footmisc \
-#    footnotebackref \
-#    fvextra \
-#    ly1 \
-#    mdframed \
- #   mweights \
- #   needspace \
- #   pagecolor \
- #   sourcecodepro \
- #   sourcesanspro \
- #   titling \
- #   zref \
- #   haranoaji \
- #   ipaex
+RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
+    && tlmgr install adjustbox \
+    babel-${lang} \
+    background \
+    collectbox \
+    everypage \
+    footmisc \
+    footnotebackref \
+    fvextra \
+    ly1 \
+    mdframed \
+   haranoaji \
+   ipaex
+   mweights \
+   needspace \
+   pagecolor \
+   sourcecodepro \
+   sourcesanspro \
+   titling \
+   zref \
 
 RUN mkdir -p /root/.pandoc/templates \
     && wget https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v${eisvogel_version}/eisvogel.tex \
