@@ -23,13 +23,13 @@ RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texliv
         footnotebackref \
         framed \
         fvextra \
+        koma-script \
         letltxmacro \
         ly1 \
         mdframed \
         mweights \
         needspace \
         pagecolor \
-        scrartcl \
         sourcecodepro \
         sourcesanspro \
         titling \
@@ -40,27 +40,6 @@ RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texliv
         xecjk \
         xurl \
         zref
-
-# RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
-#     && tlmgr install adjustbox \
-#     babel-${lang} \
-#     background \
-#     collectbox \
-#     everypage \
-#     footmisc \
-#     footnotebackref \
-#     fvextra \
-#     ly1 \
-#     mdframed \
-#    haranoaji \
-#    ipaex \
-#    mweights \
-#    needspace \
-#    pagecolor \
-#    sourcecodepro \
-#    sourcesanspro \
-#    titling \
-#    zref \
 
 RUN mkdir -p /root/.pandoc/templates \
     && wget https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v${eisvogel_version}/eisvogel.tex \
