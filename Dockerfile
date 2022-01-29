@@ -1,19 +1,24 @@
 ARG lang=german
 ARG pandoc_version="2.10"
-ARG eisvogel_version="1.5.0"
+ARG eisvogel_version="2.0.0"
 
 FROM pandoc/latex:${pandoc_version}
 
-RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
-    && tlmgr install adjustbox \
+
+RUN tlmgr install \
+    adjustbox \
     babel-${lang} \
     background \
+    bidi \
     collectbox \
+    csquotes \
     everypage \
+    filehook \
     footmisc \
     footnotebackref \
+    framed \
     fvextra \
-    luatex \
+    letltxmacro \
     ly1 \
     mdframed \
     mweights \
@@ -22,9 +27,34 @@ RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
     sourcecodepro \
     sourcesanspro \
     titling \
-    zref \
-    haranoaji \
-    ipaex
+    ucharcat \
+    ulem \
+    unicode-math \
+    upquote \
+    xecjk \
+    xurl \
+    zref
+
+#RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
+#    && tlmgr install adjustbox \
+#    babel-${lang} \
+#    background \
+#    collectbox \
+#    everypage \
+#    footmisc \
+#    footnotebackref \
+#    fvextra \
+#    ly1 \
+#    mdframed \
+ #   mweights \
+ #   needspace \
+ #   pagecolor \
+ #   sourcecodepro \
+ #   sourcesanspro \
+ #   titling \
+ #   zref \
+ #   haranoaji \
+ #   ipaex
 
 RUN mkdir -p /root/.pandoc/templates \
     && wget https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v${eisvogel_version}/eisvogel.tex \
