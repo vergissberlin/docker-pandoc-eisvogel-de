@@ -6,4 +6,4 @@ variables:
   table-use-row-colors: true
   titlepage: true
   toc-own-page: true
-  toc-title: 目次
+  toc-title: Beispiel PDF

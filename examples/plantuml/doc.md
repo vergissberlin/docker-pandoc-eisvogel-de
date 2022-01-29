@@ -1,12 +1,12 @@
 # PlantUML
 
 ```plantuml
-Client -> Server : リクエスト
-Client <-- Server : レスポンス
+Client -> Server : Willkommen
+Client <-- Server : Auf Wiedersehen
 ```
 
 ```plantuml
 digraph G {
-    甲 -> 乙;
+    Tante -> Emma;
 }
 ```
