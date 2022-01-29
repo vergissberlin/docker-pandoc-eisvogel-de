@@ -1,8 +1,9 @@
-ARG lang=german
 ARG pandoc_version="2.10"
-ARG eisvogel_version="2.0.0"
 
 FROM pandoc/latex:${pandoc_version}
+
+ARG lang="german"
+ARG eisvogel_version="2.0.0"
 
 
 RUN tlmgr install \
