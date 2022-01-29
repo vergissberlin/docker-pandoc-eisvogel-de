@@ -16,7 +16,7 @@ on:
       - "examples/**"
 
 env:
-  IMAGE_BASE_NAME: frozenbonito/pandoc-eisvogel-ja
+  IMAGE_BASE_NAME: vergissberlin/pandoc-eisvogel-de
 
 jobs:
   build:

@@ -28,6 +28,6 @@ jobs:
             - Update [pandoc/latex](https://hub.docker.com/r/pandoc/latex) (base image) to ${{ env.VERSION }}
 
             Images:
-            - `frozenbonito/pandoc-eisvogel-ja:${{ env.VERSION }}`
-            - `frozenbonito/pandoc-eisvogel-ja:${{ env.VERSION }}-plantuml`
+            - `vergissberlin/pandoc-eisvogel-de:${{ env.VERSION }}`
+            - `vergissberlin/pandoc-eisvogel-de:${{ env.VERSION }}-plantuml`
           draft: true

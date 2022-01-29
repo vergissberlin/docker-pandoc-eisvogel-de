@@ -3,7 +3,7 @@
 ## Build
 
 ```console
-$ docker run --rm -v $(pwd):/data frozenbonito/pandoc-eisvogel-ja:plantuml \
+$ docker run --rm -v $(pwd):/data vergissberlin/pandoc-eisvogel-de:plantuml \
     -o doc.pdf \
     doc.md
 ```
