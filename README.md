@@ -14,22 +14,7 @@ $ docker run --rm -v $(pwd):/data vergissberlin/pandoc-eisvogel-de \
     doc.md
 ```
 
-### Fonts
 
-The following Japanese fonts are supported.
-
-- haranoaji (default)
-- ipa
-- ipaex
-
-It can be specified with a `luatexjapresetoptions` variable.
-
-```console
-$ docker run --rm -v $(pwd):/data vergissberlin/pandoc-eisvogel-de \
-    -V luatexjapresetoptions=ipaex \
-    -o doc.pdf \
-    doc.md
-```
 
 ### PlantUML
 
