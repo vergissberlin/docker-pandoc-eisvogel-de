@@ -5,36 +5,40 @@ FROM pandoc/latex:${pandoc_version}
 ARG lang="german"
 ARG eisvogel_version="2.0.0"
 
+#ARG CTAN_REPO="http://mirror.las.iastate.edu/tex-archive/systems/texlive/tlnet"
+#ENV CTAN_REPO=$CTAN_REPO
+#RUN curl -sL "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
 
-RUN tlmgr install \
-    adjustbox \
-    babel-${lang} \
-    background \
-    bidi \
-    collectbox \
-    csquotes \
-    everypage \
-    filehook \
-    footmisc \
-    footnotebackref \
-    framed \
-    fvextra \
-    letltxmacro \
-    ly1 \
-    mdframed \
-    mweights \
-    needspace \
-    pagecolor \
-    sourcecodepro \
-    sourcesanspro \
-    titling \
-    ucharcat \
-    ulem \
-    unicode-math \
-    upquote \
-    xecjk \
-    xurl \
-    zref
+RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet &&\
+    tlmgr install \
+        adjustbox \
+        babel-${lang} \
+        background \
+        bidi \
+        collectbox \
+        csquotes \
+        everypage \
+        filehook \
+        footmisc \
+        footnotebackref \
+        framed \
+        fvextra \
+        letltxmacro \
+        ly1 \
+        mdframed \
+        mweights \
+        needspace \
+        pagecolor \
+        sourcecodepro \
+        sourcesanspro \
+        titling \
+        ucharcat \
+        ulem \
+        unicode-math \
+        upquote \
+        xecjk \
+        xurl \
+        zref
 
 #RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
 #    && tlmgr install adjustbox \

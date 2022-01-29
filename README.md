@@ -14,8 +14,6 @@ $ docker run --rm -v $(pwd):/data vergissberlin/pandoc-eisvogel-de \
     doc.md
 ```
 
-
-
 ### PlantUML
 
 The `plantuml` tag supports [PlantUML](https://plantuml.com/) using [timofurrer/pandoc-plantuml-filter](timofurrer/pandoc-plantuml-filter).
