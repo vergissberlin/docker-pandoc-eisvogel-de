@@ -5,10 +5,6 @@ FROM pandoc/latex:${pandoc_version}
 ARG lang="german"
 ARG eisvogel_version="2.0.0"
 
-#ARG CTAN_REPO="http://mirror.las.iastate.edu/tex-archive/systems/texlive/tlnet"
-#ENV CTAN_REPO=$CTAN_REPO
-#RUN curl -sL "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
-
 RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texlive/tlnet/ &&\
     tlmgr install \
         adjustbox \
@@ -41,27 +37,6 @@ RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texliv
         xecjk \
         xurl \
         zref
-
-# RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
-#     && tlmgr install adjustbox \
-#     babel-${lang} \
-#     background \
-#     collectbox \
-#     everypage \
-#     footmisc \
-#     footnotebackref \
-#     fvextra \
-#     ly1 \
-#     mdframed \
-#    haranoaji \
-#    ipaex \
-#    mweights \
-#    needspace \
-#    pagecolor \
-#    sourcecodepro \
-#    sourcesanspro \
-#    titling \
-#    zref \
 
 RUN mkdir -p /root/.pandoc/templates \
     && wget https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v${eisvogel_version}/eisvogel.tex \
