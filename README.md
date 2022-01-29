@@ -1,4 +1,4 @@
-# docker-pandoc-eisvogel-ja
+# docker-pandoc-eisvogel-de
 
 ![Build](https://github.com/vergissberlin/docker-pandoc-eisvogel-de/workflows/Build/badge.svg)
 
