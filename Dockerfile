@@ -1,18 +1,19 @@
+ARG lang=german
 ARG pandoc_version="2.10"
-FROM pandoc/latex:${pandoc_version}
+ARG eisvogel_version="1.5.0"
 
-ARG pandoc_version
+FROM pandoc/latex:${pandoc_version}
 
 RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
     && tlmgr install adjustbox \
-    babel-japanese \
+    babel-${lang} \
     background \
     collectbox \
     everypage \
     footmisc \
     footnotebackref \
     fvextra \
-    luatexja \
+    luatex \
     ly1 \
     mdframed \
     mweights \
@@ -25,7 +26,6 @@ RUN tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
     haranoaji \
     ipaex
 
-ARG eisvogel_version="1.5.0"
 RUN mkdir -p /root/.pandoc/templates \
     && wget https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v${eisvogel_version}/eisvogel.tex \
     -O /root/.pandoc/templates/eisvogel.latex
