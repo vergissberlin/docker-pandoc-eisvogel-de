@@ -29,6 +29,7 @@ RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texliv
         mweights \
         needspace \
         pagecolor \
+        scrartcl \
         sourcecodepro \
         sourcesanspro \
         titling \
