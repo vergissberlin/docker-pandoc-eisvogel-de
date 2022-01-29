@@ -14,7 +14,7 @@ jobs:
           TAG_REF: ${{ github.ref }}
         run: |
           TAG_NAME=$(echo "${TAG_REF#refs/tags/}")
-          echo "VERSION::${TAG_NAME#v}" >> $GITHUB_ENV
+          echo "VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
 
       - name: Create release
         uses: actions/create-release@v1

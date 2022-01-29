@@ -30,8 +30,8 @@ jobs:
           LATEST_TAG: "${{ env.IMAGE_BASE_NAME }}:latest"
           PLANTUML_TAG: "${{ env.IMAGE_BASE_NAME }}:plantuml"
         run: |
-          echo "LATEST_TAG::${LATEST_TAG}" >> $GITHUB_ENV
-          echo "PLANTUML_TAG::${PLANTUML_TAG}" >> $GITHUB_ENV
+          echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
+          echo "PLANTUML_TAG=${PLANTUML_TAG}" >> $GITHUB_ENV
 
       - name: Build base image
         run: docker build -t "${LATEST_TAG}" .
