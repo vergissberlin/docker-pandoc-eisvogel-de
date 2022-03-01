@@ -5,6 +5,9 @@ FROM pandoc/latex:${pandoc_version}
 ARG lang="german"
 ARG eisvogel_version="2.0.0"
 
+RUN apk add \
+    git
+
 RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texlive/tlnet/ &&\
     tlmgr install \
         adjustbox \
