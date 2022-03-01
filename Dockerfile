@@ -7,6 +7,8 @@ ARG eisvogel_version="2.0.0"
 
 RUN apk add \
     git
+    
+ENV TEXMF=.:/opt/tex/cur//:
 
 RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texlive/tlnet/ &&\
     tlmgr update --self &&\
