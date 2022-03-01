@@ -9,6 +9,7 @@ RUN apk add \
     git
 
 RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texlive/tlnet/ &&\
+    tlmgr update --self &&\
     tlmgr install \
         adjustbox \
         babel-${lang} \
