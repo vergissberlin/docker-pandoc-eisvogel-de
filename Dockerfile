@@ -8,12 +8,12 @@ ARG eisvogel_version="2.0.0"
 RUN apk add \
     git \
     curl
-    
+
 ENV TEXMF=.:/opt/tex/cur//:
 
-RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texlive/tlnet/ &&\
-    tlmgr update --self &&\
-    tlmgr install \
+RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texlive/tlnet/
+RUN tlmgr update --self
+RUN tlmgr install \
         adjustbox \
         babel-${lang} \
         background \
@@ -34,14 +34,11 @@ RUN tlmgr option repository https://ctan.space-pro.be/tex-archive/systems/texliv
         mweights \
         needspace \
         pagecolor \
-        sourcecodepro \
-        sourcesanspro \
         titling \
         ucharcat \
         ulem \
         unicode-math \
         upquote \
-        xecjk \
         xurl \
         zref
 
