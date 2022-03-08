@@ -6,7 +6,8 @@ ARG lang="german"
 ARG eisvogel_version="2.0.0"
 
 RUN apk add \
-    git
+    git \
+    curl
     
 ENV TEXMF=.:/opt/tex/cur//:
 
