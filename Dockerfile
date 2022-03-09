@@ -2,12 +2,27 @@ ARG pandoc_version="2.17-alpine"
 
 FROM pandoc/latex:${pandoc_version}
 
+LABEL maintainer="André Lademann <vergissbrerlin@gmail.com>" \
+	        description="pandoc in Docker with Eisvogel template"
+
 ARG lang="german"
+ARG la="de"
 ARG eisvogel_version="2.0.0"
 
 RUN apk add \
+    bash \
+    curl  \
+    dia \
+    fontconfig \
     git \
-    curl
+    librsvg \
+    openssh-client \
+    py3-pip \
+    rsync \
+    texlive \
+    texlive-luatex
+    texlive-xetex \
+    ttf-liberation 
 
 ENV TEXMF=.:/opt/tex/cur//:
 
@@ -16,6 +31,7 @@ RUN tlmgr update --self
 RUN tlmgr install \
         adjustbox \
         babel-${lang} \
+        bib-${la} \
         background \
         bidi \
         collectbox \
@@ -39,6 +55,9 @@ RUN tlmgr install \
         ulem \
         unicode-math \
         upquote \
+        sourcecodepro \
+        sourcesanspro \
+        xecjk \
         xurl \
         zref
 
