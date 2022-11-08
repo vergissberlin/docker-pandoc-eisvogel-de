@@ -27,8 +27,8 @@ RUN apk add \
 ENV TEXMF=.:/opt/tex/cur//:
 
 RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-RUN wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
-RUN sh update-tlmgr-latest.sh -- --upgrade
+#RUN wget --no-verbose https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+#RUN sh update-tlmgr-latest.sh -- --upgrade
 # RUN tlmgr update --self --all
 RUN tlmgr install \
         adjustbox \
