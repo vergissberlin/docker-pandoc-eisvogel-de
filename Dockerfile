@@ -29,7 +29,7 @@ ENV TEXMF=.:/opt/tex/cur//:
 RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
 RUN wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
 RUN sh update-tlmgr-latest.sh -- --upgrade
-RUN tlmgr update --self --all
+# RUN tlmgr update --self --all
 RUN tlmgr install \
         adjustbox \
         babel-${lang} \
