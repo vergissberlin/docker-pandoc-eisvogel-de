@@ -19,7 +19,7 @@ $ docker run --rm -v $(pwd):/data vergissberlin/pandoc-eisvogel-de \
 The `plantuml` tag supports [PlantUML](https://plantuml.com/) using [timofurrer/pandoc-plantuml-filter](timofurrer/pandoc-plantuml-filter).
 
 ```console
-$ docker run --rm -v $(pwd):/data frozenbonito/pandoc-eisvogel-de:plantuml \
+$ docker run --rm -v $(pwd):/data vergissberlin/pandoc-eisvogel-de:plantuml \
     -o doc.pdf \
     doc.md
 ```
