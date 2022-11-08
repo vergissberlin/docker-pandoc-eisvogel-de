@@ -1,12 +1,9 @@
 ARG pandoc_version="latest-alpine"
-ARG lang="german"
-ARG la="de"
-ARG eisvogel_version="2.0.0"
 
 FROM pandoc/latex:${pandoc_version}
 
 LABEL maintainer="André Lademann <vergissbrerlin@gmail.com>" \
-	        description="pandoc in Docker with Eisvogel template"
+	        description="Pandoc in Docker with Eisvogel template."
 
 RUN apk add \
     bash \
@@ -25,10 +22,11 @@ ENV TEXMF=.:/opt/tex/cur//:
 # Install the latest texlive version from the official repository
 RUN apk add --no-cache --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ texlive-full
 
+ARG lang="german"
+ARG la="de"
+ARG eisvogel_version="2.0.0"
 
 RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-#RUN wget --no-verbose https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
-#RUN sh update-tlmgr-latest.sh -- --upgrade
 RUN tlmgr update --self
 RUN tlmgr install \
         adjustbox \
