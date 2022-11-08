@@ -43,7 +43,7 @@ RUN tlmgr install \
 
 # Eisvogel template
 RUN mkdir -p /opt/pandoc/templates && \
-    wget --no-verbose -O - https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.0.0/Eisvogel-${eisvogel_version}.tar.gz | \
+    wget --no-verbose -O - https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.0.0/Eisvogel-2.0.0.tar.gz | \
     tar zxvf - -C /opt/pandoc/templates
 
 # Packages
@@ -55,8 +55,16 @@ RUN apk add --no-cache \
     ttf-droid \
     ttf-droid-nonlatin
 
+# PlantUML
+ARG plantuml_version="1.2022.2"
+RUN wget https://github.com/plantuml/plantuml/releases/download/v${plantuml_version}/plantuml-${plantuml_version}.jar -O /opt/plantuml.jar
+RUN pip3 install --upgrade pip
+RUN pip3 install pandoc-plantuml-filter
+ENV PLANTUML_BIN="java -jar /opt/plantuml.jar"
+
 # Default settings
 RUN mkdir -p /root/.pandoc/defaults
 COPY default.yaml /root/.pandoc/defaults/default.yaml
 
-ENTRYPOINT [ "/usr/local/bin/pandoc", "-d", "default" ]
+#ENTRYPOINT [ "/usr/local/bin/pandoc", "-d", "default" ]
+ENTRYPOINT [ "/usr/local/bin/pandoc" ]
