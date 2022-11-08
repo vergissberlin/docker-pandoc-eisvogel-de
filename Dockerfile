@@ -7,7 +7,6 @@ LABEL maintainer="André Lademann <vergissbrerlin@gmail.com>" \
 
 
 ARG lang="german"
-ARG eisvogel_version="2.0.0"
 
 # Install dependencies
 RUN tlmgr install \
@@ -40,8 +39,8 @@ RUN tlmgr install \
     zref \
     koma-script
 
-
 # Eisvogel template
+ARG eisvogel_version="2.0.0"
 RUN mkdir -p /opt/pandoc/templates && \
     wget --no-verbose -O - https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.0.0/Eisvogel-2.0.0.tar.gz | \
     tar zxvf - -C /opt/pandoc/templates
@@ -52,6 +51,7 @@ RUN apk add --no-cache \
     openjdk11 \
     python3 \
     py3-pip \
+    texlive-full \
     ttf-droid \
     ttf-droid-nonlatin
 
