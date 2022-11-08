@@ -3,7 +3,7 @@ ARG lang="german"
 ARG la="de"
 ARG eisvogel_version="2.0.0"
 
-FROM pandoc/core:${pandoc_version}
+FROM pandoc/latex:${pandoc_version}
 
 LABEL maintainer="André Lademann <vergissbrerlin@gmail.com>" \
 	        description="pandoc in Docker with Eisvogel template"
@@ -18,12 +18,13 @@ RUN apk add \
     openssh-client \
     py3-pip \
     rsync \
-    texlive \
-    texlive-luatex \
-    texlive-xetex \
     ttf-liberation 
 
 ENV TEXMF=.:/opt/tex/cur//:
+
+# Install the latest texlive version from the official repository
+RUN apk add --no-cache --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ texlive-full
+
 
 RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
 #RUN wget --no-verbose https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
