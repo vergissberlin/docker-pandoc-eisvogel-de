@@ -20,7 +20,7 @@ RUN apk add \
     py3-pip \
     rsync \
     texlive \
-    texlive-luatex
+    texlive-luatex \
     texlive-xetex \
     ttf-liberation 
 
