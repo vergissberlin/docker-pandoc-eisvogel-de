@@ -1,13 +1,12 @@
-ARG pandoc_version="2.17-alpine"
-
-FROM pandoc/latex:${pandoc_version}
-
-LABEL maintainer="André Lademann <vergissbrerlin@gmail.com>" \
-	        description="pandoc in Docker with Eisvogel template"
-
+ARG pandoc_version="latest-alpine"
 ARG lang="german"
 ARG la="de"
 ARG eisvogel_version="2.0.0"
+
+FROM pandoc/core:${pandoc_version}
+
+LABEL maintainer="André Lademann <vergissbrerlin@gmail.com>" \
+	        description="pandoc in Docker with Eisvogel template"
 
 RUN apk add \
     bash \
@@ -29,7 +28,7 @@ ENV TEXMF=.:/opt/tex/cur//:
 RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
 #RUN wget --no-verbose https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
 #RUN sh update-tlmgr-latest.sh -- --upgrade
-# RUN tlmgr update --self --all
+RUN tlmgr update --self
 RUN tlmgr install \
         adjustbox \
         babel-${lang} \
