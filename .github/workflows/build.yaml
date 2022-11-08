@@ -28,43 +28,14 @@ jobs:
       - name: Define environment variables
         env:
           LATEST_TAG: '${{ env.IMAGE_BASE_NAME }}:latest'
-          PLANTUML_TAG: '${{ env.IMAGE_BASE_NAME }}:plantuml'
         run: |
           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
-          echo "PLANTUML_TAG=${PLANTUML_TAG}" >> $GITHUB_ENV
-
       - name: Build base image
         run: docker build -t "${LATEST_TAG}" .
-
-      - name: Build plantuml image
-        run: |
-          cd plantuml
-          docker build -t "${PLANTUML_TAG}" .
-
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Define environment variables
-        env:
-          LATEST_TAG: '${{ env.IMAGE_BASE_NAME }}:latest'
-          PLANTUML_TAG: '${{ env.IMAGE_BASE_NAME }}:plantuml'
-        run: |
-          echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
-          echo "PLANTUML_TAG=${PLANTUML_TAG}" >> $GITHUB_ENV
-
       - name: Test base image
         run: |
           cd examples/basics
           docker run --rm -v $(pwd):/data "${LATEST_TAG}" -d config.yaml -o doc.pdf doc.md
-
-      - name: Test plantuml image
-        run: |
-          cd examples/plantuml
-          docker run --rm -v $(pwd):/data "${PLANTUML_TAG}" -o doc.pdf doc.md
 
   # Publish the image to GitHub Container Registry
   # https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images
@@ -72,7 +43,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build
-      - test
     steps:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1

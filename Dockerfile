@@ -43,7 +43,7 @@ RUN tlmgr install \
 
 # Eisvogel template
 RUN mkdir -p /opt/pandoc/templates && \
-    wget -O - https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.0.0/Eisvogel-${eisvogel_version}.tar.gz | \
+    wget --no-verbose -O - https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.0.0/Eisvogel-${eisvogel_version}.tar.gz | \
     tar zxvf - -C /opt/pandoc/templates
 
 # Packages
