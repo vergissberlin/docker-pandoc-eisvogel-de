@@ -24,7 +24,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Define environment variables
         env:
           LATEST_TAG: '${{ env.IMAGE_BASE_NAME }}:latest'
@@ -36,6 +35,11 @@ jobs:
         run: |
           cd examples/basics
           docker run --rm -v $(pwd):/data "${LATEST_TAG}" -d config.yaml -o doc.pdf doc.md
+      - name: Upload test PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-pdf
+          path: examples/basics/doc.pdf
 
   # Publish the image to GitHub Container Registry
   # https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images
@@ -57,4 +61,3 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ env.IMAGE_BASE_NAME }}:latest
-            ghcr.io/${{ env.IMAGE_BASE_NAME }}:plantuml

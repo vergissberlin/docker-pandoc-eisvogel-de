@@ -14,7 +14,10 @@ docker run --rm -v $(pwd):/data ghcr.io/vergissberlin/pandoc-eisvogel-de \
     doc.md
 ```
 
-
 ## Examples
 
 See [examples](./examples) directory.
+
+```shell
+docker run -v $PWD:/data  ghcr.io/vergissberlin/pandoc-eisvogel-de README.md -o README.pdf --standalone --data-dir=/opt/pandoc --template eisvogel --pdf-engine lualatex
+```

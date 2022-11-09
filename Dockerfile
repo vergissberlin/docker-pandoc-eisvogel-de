@@ -51,7 +51,7 @@ RUN apk add --no-cache \
     openjdk11 \
     python3 \
     py3-pip \
-    texlive-full \
+    texlive-luatex \
     ttf-droid \
     ttf-droid-nonlatin
 

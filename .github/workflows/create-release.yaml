@@ -27,7 +27,6 @@ jobs:
             Changes in this release
             - Update [pandoc/latex](https://hub.docker.com/r/pandoc/latex) (base image) to ${{ env.VERSION }}
 
-            Images:
-            - `vergissberlin/pandoc-eisvogel-de:${{ env.VERSION }}`
-            - `vergissberlin/pandoc-eisvogel-de:${{ env.VERSION }}-plantuml`
+            Image:
+            - `ghcr.io/vergissberlin/pandoc-eisvogel-de:${{ env.VERSION }}`
           draft: true
