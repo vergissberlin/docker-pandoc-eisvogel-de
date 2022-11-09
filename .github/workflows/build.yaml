@@ -1,0 +1,64 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - 'examples/**'
+  release:
+    types:
+      - published
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'examples/**'
+
+env:
+  IMAGE_BASE_NAME: vergissberlin/pandoc-eisvogel-de
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Define environment variables
+        env:
+          LATEST_TAG: '${{ env.IMAGE_BASE_NAME }}:latest'
+        run: |
+          echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
+      - name: Build base image
+        run: docker build -t "${LATEST_TAG}" .
+      - name: Test base image
+        run: |
+          mkdir -p output
+          cd examples/basics
+          docker run --rm -v $PWD:/data "${LATEST_TAG}" -d config.yaml --template=eisvogel --standalone -o ../../output/basic.pdf doc.md
+      - name: Upload test PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-pdf
+          path: output/basic.pdf
+
+  # Publish the image to GitHub Container Registry
+  # https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images
+  publish:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push image to GitHub Container Registry
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: |
+            ghcr.io/${{ env.IMAGE_BASE_NAME }}:latest
