@@ -35,12 +35,12 @@ jobs:
         run: |
           mkdir -p output
           cd examples/basics
-          docker run --rm -v $PWD:/data "${LATEST_TAG}" -d config.yaml --standalone --data-dir=/opt/pandoc --from markdown --template eisvogel --pdf-engine lualatex -o ../../output/basic.pdf doc.md
+          docker run --rm -v $PWD:/data "${LATEST_TAG}" -d config.yaml --standalone --data-dir=/opt/pandoc --from markdown --template eisvogel --pdf-engine lualatex -o basic.pdf doc.md
       - name: Upload test PDF
         uses: actions/upload-artifact@v2
         with:
           name: test-pdf
-          path: output/basic.pdf
+          path: basic.pdf
 
   # Publish the image to GitHub Container Registry
   # https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images
