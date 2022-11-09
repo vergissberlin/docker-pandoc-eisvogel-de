@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir -p output
           cd examples/basics
-          docker run --rm -v $PWD:/data "${LATEST_TAG}" -d config.yaml --template=eisvogel --standalone -o ../../output/basic.pdf doc.md
+          docker run --rm -v $PWD:/data "${LATEST_TAG}" -d config.yaml --standalone --data-dir=/opt/pandoc --template eisvogel --pdf-engine lualatex -o ../../output/basic.pdf doc.md
       - name: Upload test PDF
         uses: actions/upload-artifact@v2
         with:
