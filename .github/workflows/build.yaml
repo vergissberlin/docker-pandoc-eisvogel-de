@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-pdf
-          path: basic.pdf
+          path: examples/basics/basic.pdf
 
   # Publish the image to GitHub Container Registry
   # https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images
